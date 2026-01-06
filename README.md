@@ -9,11 +9,10 @@
     body{
         margin:0;
         background:#060e0b;
-        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        font-family:"Segoe UI", Roboto, Arial, sans-serif;
         color:#c9ffe9;
     }
 
-    /* Subtle system scan texture */
     body::before{
         content:"";
         position:fixed;
@@ -38,7 +37,7 @@
         text-align:center;
         font-size:26px;
         font-weight:600;
-        margin-bottom:18px;
+        margin-bottom:10px;
         color:#e6fff5;
     }
 
@@ -60,7 +59,7 @@
     .panel-header{
         font-size:14px;
         color:#7dffd1;
-        margin-bottom:20px;
+        margin-bottom:18px;
     }
 
     .status{
@@ -69,9 +68,7 @@
         margin-bottom:22px;
     }
 
-    .ok{
-        color:#4dffb4;
-    }
+    .ok{ color:#4dffb4; }
 
     .analysis{
         border-top:1px solid rgba(30,255,176,0.3);
@@ -82,9 +79,9 @@
         color:#eafff7;
     }
 
-    .analysis strong{
-        color:#6bffd0;
+    .timer{
         font-weight:600;
+        color:#6bffd0;
     }
 
     .footer{
@@ -106,7 +103,7 @@
     </div>
 
     <div class="subtitle">
-        Encrypted session established • Real‑time environment analysis
+        Encrypted session established • Environment analysis in progress
     </div>
 
     <div class="panel">
@@ -122,22 +119,10 @@
             <div class="ok">✔ Access permissions validated</div>
         </div>
 
-        <div class="analysis">
-            <strong>Diagnostic Result:</strong><br><br>
-
-            The system is operating normally and no faults were detected on the
-            service side during this session.
-            <br><br>
-
-            The requested Instagram data could not be rendered due to
-            restrictions detected within the client environment.
-            This typically occurs when local network routing, VPN usage,
-            DNS filtering, or regional traffic policies interfere with
-            encrypted data synchronization.
-            <br><br>
-
-            To proceed successfully, please review your local connection
-            stability and environment configuration before retrying.
+        <div id="analysisBox" class="analysis">
+            Initializing client environment diagnostics…<br><br>
+            Estimated completion time:
+            <span class="timer" id="countdown">01:00</span>
         </div>
 
     </div>
@@ -147,6 +132,38 @@
     </div>
 
 </div>
+
+<script>
+    let timeLeft = 60;
+    const countdownEl = document.getElementById("countdown");
+    const analysisBox = document.getElementById("analysisBox");
+
+    const timer = setInterval(() => {
+        timeLeft--;
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        countdownEl.textContent =
+            String(minutes).padStart(2, "0") + ":" +
+            String(seconds).padStart(2, "0");
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            analysisBox.innerHTML = `
+                <strong>Diagnostic Result:</strong><br><br>
+                The system is operating normally and no faults were detected on
+                the service side during this session.<br><br>
+                The requested Instagram data could not be rendered due to
+                restrictions identified within the client environment.
+                This commonly occurs when local network routing, VPN usage,
+                DNS filtering, or regional traffic policies interfere with
+                encrypted data synchronization.<br><br>
+                Please review your local connection and environment
+                configuration before attempting again.
+            `;
+        }
+    }, 1000);
+</script>
 
 </body>
 </html>
