@@ -8,127 +8,142 @@
 <style>
     body{
         margin:0;
-        background:#050f0c;
-        font-family: "Segoe UI", Arial, sans-serif;
-        color:#00ff99;
+        background:#060e0b;
+        font-family: "Segoe UI", Roboto, Arial, sans-serif;
+        color:#c9ffe9;
     }
 
-    body::after{
+    /* Subtle system scan texture */
+    body::before{
         content:"";
         position:fixed;
         inset:0;
         background:repeating-linear-gradient(
             to bottom,
-            rgba(0,255,153,0.03),
-            rgba(0,255,153,0.03) 1px,
+            rgba(0,255,170,0.02),
+            rgba(0,255,170,0.02) 1px,
             transparent 1px,
-            transparent 4px
+            transparent 5px
         );
         pointer-events:none;
     }
 
-    .wrap{
-        max-width:880px;
+    .container{
+        max-width:900px;
         margin:70px auto;
         padding:30px;
     }
 
     .title{
         text-align:center;
-        font-size:28px;
-        font-weight:700;
-        letter-spacing:.5px;
-        margin-bottom:22px;
-        text-shadow:0 0 20px rgba(0,255,153,.6);
-    }
-
-    .owner{
-        text-align:center;
-        margin-bottom:30px;
-    }
-
-    .owner span{
-        padding:10px 28px;
-        border:1.5px solid #00ff99;
-        border-radius:40px;
-        font-size:14px;
+        font-size:26px;
         font-weight:600;
-        letter-spacing:1px;
-        box-shadow:0 0 35px rgba(0,255,153,.5);
-        background:rgba(0,255,153,.08);
+        margin-bottom:18px;
+        color:#e6fff5;
+    }
+
+    .subtitle{
+        text-align:center;
+        font-size:14px;
+        color:#9fffd8;
+        margin-bottom:35px;
     }
 
     .panel{
-        background:#071814;
-        border:1px solid #00ff99;
+        background:#0a1612;
+        border:1px solid #1effb0;
         border-radius:14px;
         padding:30px;
-        box-shadow:0 0 45px rgba(0,255,153,.25);
+        box-shadow:0 0 40px rgba(30,255,176,0.15);
     }
 
-    .panel-head{
-        font-size:15px;
-        color:#8dffd0;
-        margin-bottom:18px;
+    .panel-header{
+        font-size:14px;
+        color:#7dffd1;
+        margin-bottom:20px;
     }
 
-    .data-box{
-        border:1px dashed #00ff99;
-        border-radius:10px;
-        padding:26px;
-        background:rgba(0,255,153,.05);
-        font-size:15px;
+    .status{
+        font-size:14px;
         line-height:1.8;
+        margin-bottom:22px;
     }
 
-    .ok{ color:#6bffbf; }
-    .warn{ color:#e4ffe8; }
+    .ok{
+        color:#4dffb4;
+    }
+
+    .analysis{
+        border-top:1px solid rgba(30,255,176,0.3);
+        padding-top:22px;
+        margin-top:22px;
+        font-size:14px;
+        line-height:1.9;
+        color:#eafff7;
+    }
+
+    .analysis strong{
+        color:#6bffd0;
+        font-weight:600;
+    }
 
     .footer{
-        margin-top:40px;
+        margin-top:38px;
         text-align:center;
         font-size:12px;
-        color:#7affc5;
-        opacity:.85;
+        color:#8fffd9;
+        opacity:0.85;
     }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<div class="container">
 
     <div class="title">
-        Instagram Secure Access Overview 👇🏻
+        Instagram Secure Diagnostics
     </div>
 
-    <div class="owner">
-        <span>VERIFIED OPERATOR • fadii_the_mayor</span>
+    <div class="subtitle">
+        Encrypted session established • Real‑time environment analysis
     </div>
 
     <div class="panel">
-        <div class="panel-head">
-            System Diagnostics • Encrypted Session Active
+
+        <div class="panel-header">
+            Session Overview
         </div>
 
-        <div class="data-box">
-            <div class="ok">✔ Server Response: Stable</div>
-            <div class="ok">✔ Security Layer: Verified</div>
-            <div class="ok">✔ Access Gateway: Online</div>
-            <br>
-            <div class="warn">
-                Your Instagram data could not be rendered due to a local
-                network synchronization issue.
-                <br><br>
-                This does not indicate any fault within the access system.
-                Kindly verify your internet stability, VPN configuration,
-                or regional routing and try again.
-            </div>
+        <div class="status">
+            <div class="ok">✔ Core servers responding within normal latency</div>
+            <div class="ok">✔ Authentication scope verified</div>
+            <div class="ok">✔ Secure transport layer established</div>
+            <div class="ok">✔ Access permissions validated</div>
         </div>
+
+        <div class="analysis">
+            <strong>Diagnostic Result:</strong><br><br>
+
+            The system is operating normally and no faults were detected on the
+            service side during this session.
+            <br><br>
+
+            The requested Instagram data could not be rendered due to
+            restrictions detected within the client environment.
+            This typically occurs when local network routing, VPN usage,
+            DNS filtering, or regional traffic policies interfere with
+            encrypted data synchronization.
+            <br><br>
+
+            To proceed successfully, please review your local connection
+            stability and environment configuration before retrying.
+        </div>
+
     </div>
 
     <div class="footer">
-        Instagram Secure Systems • Professional Diagnostic Interface
+        Maintained by <strong>fadii_the_mayor</strong> • Secure Systems Operator
     </div>
 
 </div>
