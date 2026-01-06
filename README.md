@@ -9,9 +9,9 @@
     body{
         margin:0;
         padding:0;
-        background:#0b0614;
+        background:#020d0a;
         font-family:"Courier New", monospace;
-        color:#e1306c;
+        color:#00ff9c;
     }
 
     /* scanlines */
@@ -39,60 +39,60 @@
         text-align:center;
         font-size:26px;
         font-weight:bold;
-        margin-bottom:30px;
-        text-shadow:0 0 14px #e1306c;
+        margin-bottom:28px;
+        text-shadow:0 0 15px #00ff9c;
     }
 
-    /* OWNER BADGE — noticeable */
+    /* OWNER BADGE — clearly visible */
     .owner-badge{
         text-align:center;
-        margin-bottom:25px;
+        margin-bottom:26px;
     }
     .owner-badge span{
         display:inline-block;
-        padding:10px 22px;
-        border:1px solid #ff3f86;
+        padding:12px 26px;
+        border:1px solid #00ff9c;
         border-radius:30px;
-        color:#ff7aa8;
+        color:#00ff9c;
         font-size:14px;
         letter-spacing:1px;
-        text-shadow:0 0 12px #ff3f86;
-        box-shadow:0 0 25px rgba(255,63,134,0.35);
-        background:rgba(225,48,108,0.08);
+        text-shadow:0 0 14px #00ff9c;
+        box-shadow:0 0 30px rgba(0,255,156,0.45);
+        background:rgba(0,255,156,0.08);
     }
 
     .terminal{
-        background:#12081f;
-        border:1px solid #e1306c;
+        background:#010f0b;
+        border:1px solid #00ff9c;
         border-radius:10px;
         padding:25px;
-        box-shadow:0 0 30px rgba(225,48,108,0.25);
+        box-shadow:0 0 35px rgba(0,255,156,0.25);
     }
 
     .terminal-header{
         font-size:14px;
         margin-bottom:12px;
-        color:#ff7aa8;
+        color:#6bffcb;
     }
 
     .status{
         font-size:14px;
         margin-bottom:18px;
-        color:#ff9cbc;
+        color:#9cffde;
     }
 
     .timer{
         font-weight:bold;
-        color:#ffd1e1;
-        text-shadow:0 0 10px #ff7aa8;
+        color:#e8fff6;
+        text-shadow:0 0 12px #00ff9c;
     }
 
     .data-area{
-        border:1px dashed #e1306c;
+        border:1px dashed #00ff9c;
         border-radius:6px;
         padding:24px;
         text-align:center;
-        background:rgba(225,48,108,0.05);
+        background:rgba(0,255,156,0.05);
         min-height:80px;
     }
 
@@ -107,7 +107,7 @@
         margin-top:35px;
         text-align:center;
         font-size:12px;
-        color:#c77b9b;
+        color:#7dffcf;
         opacity:0.75;
     }
 </style>
@@ -141,7 +141,7 @@
     </div>
 
     <div class="footer">
-        INSTAGRAM SECURE INTERFACE • TRACE PROTECTION ENABLED
+        INSTAGRAM SECURE INTERFACE • TRACE SHIELD ACTIVE
     </div>
 
 </div>
