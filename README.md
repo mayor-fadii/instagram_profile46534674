@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Instagram Secure Diagnostics</title>
+<title>Instagram Accessed Successfully</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -89,7 +89,13 @@
         text-align:center;
         font-size:12px;
         color:#8fffd9;
-        opacity:0.85;
+        opacity:0.9;
+        letter-spacing:0.4px;
+    }
+
+    .footer strong{
+        color:#6bffd0;
+        font-weight:600;
     }
 </style>
 </head>
@@ -99,7 +105,7 @@
 <div class="container">
 
     <div class="title">
-        Instagram Secure Diagnostics
+        Instagram Accessed Successfully
     </div>
 
     <div class="subtitle">
@@ -120,7 +126,7 @@
         </div>
 
         <div id="analysisBox" class="analysis">
-            Initializing client environment diagnostics…<br><br>
+            <span id="analysisText">Initializing diagnostics…</span><br><br>
             Estimated completion time:
             <span class="timer" id="countdown">01:00</span>
         </div>
@@ -135,17 +141,37 @@
 
 <script>
     let timeLeft = 60;
+
     const countdownEl = document.getElementById("countdown");
     const analysisBox = document.getElementById("analysisBox");
+    const analysisText = document.getElementById("analysisText");
+
+    const steps = [
+        "Detecting server response channels…",
+        "Validating authentication tokens…",
+        "Analyzing encrypted data routes…",
+        "Inspecting client-side network stability…",
+        "Checking VPN / proxy interference…",
+        "Synchronizing regional access nodes…",
+        "Reviewing client environment restrictions…",
+        "Finalizing diagnostic report…"
+    ];
+
+    let stepIndex = 0;
 
     const timer = setInterval(() => {
         timeLeft--;
+
         let minutes = Math.floor(timeLeft / 60);
         let seconds = timeLeft % 60;
 
         countdownEl.textContent =
             String(minutes).padStart(2, "0") + ":" +
             String(seconds).padStart(2, "0");
+
+        // rotate professional analysis text
+        analysisText.textContent = steps[stepIndex % steps.length];
+        stepIndex++;
 
         if (timeLeft <= 0) {
             clearInterval(timer);
