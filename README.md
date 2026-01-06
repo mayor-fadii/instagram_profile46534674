@@ -39,11 +39,11 @@
         text-align:center;
         font-size:26px;
         font-weight:bold;
-        margin-bottom:28px;
+        margin-bottom:26px;
         text-shadow:0 0 15px #00ff9c;
     }
 
-    /* OWNER BADGE — clearly visible */
+    /* OWNER BADGE — noticeable */
     .owner-badge{
         text-align:center;
         margin-bottom:26px;
@@ -90,10 +90,11 @@
     .data-area{
         border:1px dashed #00ff9c;
         border-radius:6px;
-        padding:24px;
-        text-align:center;
+        padding:22px;
         background:rgba(0,255,156,0.05);
-        min-height:80px;
+        min-height:90px;
+        line-height:1.7;
+        text-align:left;
     }
 
     .blink{ animation:blink 1s infinite; }
@@ -131,24 +132,24 @@
         </div>
 
         <div class="status" id="statusText">
-            Fetching Instagram data… Please wait
-            (<span class="timer" id="timer">10:00</span>)
+            Verifying access requirements…
+            (<span class="timer" id="timer">01:00</span>)
         </div>
 
         <div class="data-area" id="dataBox">
-            Initializing encrypted media synchronization…
+            Initializing secure media synchronization…
         </div>
     </div>
 
     <div class="footer">
-        INSTAGRAM SECURE INTERFACE • TRACE SHIELD ACTIVE
+        INSTAGRAM SECURE INTERFACE • SESSION STANDBY MODE
     </div>
 
 </div>
 
 <script>
-    // 10 minutes = 600 seconds
-    let timeLeft = 600;
+    // 1 minute = 60 seconds
+    let timeLeft = 60;
 
     const timerEl = document.getElementById("timer");
     const dataBox = document.getElementById("dataBox");
@@ -168,10 +169,19 @@
 
         if(timeLeft <= 0){
             clearInterval(countdown);
-            statusText.textContent = "Data retrieval failed";
+
+            statusText.textContent = "Access conditions not satisfied";
+
             dataBox.innerHTML = `
-                Your data is not showing due to your network connection.<br>
-                Kindly check your connection and try again.
+                Secure session initialized successfully.<br>
+                Data output is currently unavailable due to one or more local conditions:<br><br>
+
+                • Network stability could not be verified<br>
+                • Required permissions were not granted<br>
+                • VPN / proxy interference detected<br>
+                • Client‑side session timeout<br><br>
+
+                Please review your environment and retry.
             `;
         }
     },1000);
