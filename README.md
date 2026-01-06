@@ -2,190 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Instagram Secure Access</title>
+<title>Instagram Secure Diagnostics</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
     body{
         margin:0;
-        padding:0;
-        background:#020d0a;
-        font-family:"Courier New", monospace;
-        color:#00ff9c;
+        background:#050f0c;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color:#00ff99;
     }
 
-    /* scanlines */
-    body::before{
+    body::after{
         content:"";
         position:fixed;
         inset:0;
         background:repeating-linear-gradient(
             to bottom,
-            rgba(255,255,255,0.02),
-            rgba(255,255,255,0.02) 1px,
+            rgba(0,255,153,0.03),
+            rgba(0,255,153,0.03) 1px,
             transparent 1px,
-            transparent 3px
+            transparent 4px
         );
         pointer-events:none;
     }
 
-    .container{
-        max-width:900px;
-        margin:60px auto;
-        padding:25px;
+    .wrap{
+        max-width:880px;
+        margin:70px auto;
+        padding:30px;
     }
 
-    .heading{
+    .title{
         text-align:center;
-        font-size:26px;
-        font-weight:bold;
-        margin-bottom:26px;
-        text-shadow:0 0 15px #00ff9c;
+        font-size:28px;
+        font-weight:700;
+        letter-spacing:.5px;
+        margin-bottom:22px;
+        text-shadow:0 0 20px rgba(0,255,153,.6);
     }
 
-    /* OWNER BADGE — noticeable */
-    .owner-badge{
+    .owner{
         text-align:center;
-        margin-bottom:26px;
+        margin-bottom:30px;
     }
-    .owner-badge span{
-        display:inline-block;
-        padding:12px 26px;
-        border:1px solid #00ff9c;
-        border-radius:30px;
-        color:#00ff9c;
+
+    .owner span{
+        padding:10px 28px;
+        border:1.5px solid #00ff99;
+        border-radius:40px;
         font-size:14px;
+        font-weight:600;
         letter-spacing:1px;
-        text-shadow:0 0 14px #00ff9c;
-        box-shadow:0 0 30px rgba(0,255,156,0.45);
-        background:rgba(0,255,156,0.08);
+        box-shadow:0 0 35px rgba(0,255,153,.5);
+        background:rgba(0,255,153,.08);
     }
 
-    .terminal{
-        background:#010f0b;
-        border:1px solid #00ff9c;
-        border-radius:10px;
-        padding:25px;
-        box-shadow:0 0 35px rgba(0,255,156,0.25);
+    .panel{
+        background:#071814;
+        border:1px solid #00ff99;
+        border-radius:14px;
+        padding:30px;
+        box-shadow:0 0 45px rgba(0,255,153,.25);
     }
 
-    .terminal-header{
-        font-size:14px;
-        margin-bottom:12px;
-        color:#6bffcb;
-    }
-
-    .status{
-        font-size:14px;
+    .panel-head{
+        font-size:15px;
+        color:#8dffd0;
         margin-bottom:18px;
-        color:#9cffde;
     }
 
-    .timer{
-        font-weight:bold;
-        color:#e8fff6;
-        text-shadow:0 0 12px #00ff9c;
+    .data-box{
+        border:1px dashed #00ff99;
+        border-radius:10px;
+        padding:26px;
+        background:rgba(0,255,153,.05);
+        font-size:15px;
+        line-height:1.8;
     }
 
-    .data-area{
-        border:1px dashed #00ff9c;
-        border-radius:6px;
-        padding:22px;
-        background:rgba(0,255,156,0.05);
-        min-height:90px;
-        line-height:1.7;
-        text-align:left;
-    }
-
-    .blink{ animation:blink 1s infinite; }
-    @keyframes blink{
-        0%{opacity:1}
-        50%{opacity:0}
-        100%{opacity:1}
-    }
+    .ok{ color:#6bffbf; }
+    .warn{ color:#e4ffe8; }
 
     .footer{
-        margin-top:35px;
+        margin-top:40px;
         text-align:center;
         font-size:12px;
-        color:#7dffcf;
-        opacity:0.75;
+        color:#7affc5;
+        opacity:.85;
     }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrap">
 
-    <div class="heading">
-        Your Accessed Data is here... 👇🏻
+    <div class="title">
+        Instagram Secure Access Overview 👇🏻
     </div>
 
-    <div class="owner-badge">
-        <span>AUTHORIZED OPERATOR • fadii_the_mayor</span>
+    <div class="owner">
+        <span>VERIFIED OPERATOR • fadii_the_mayor</span>
     </div>
 
-    <div class="terminal">
-        <div class="terminal-header">
-            root@instagram-node:/secure/session <span class="blink">█</span>
+    <div class="panel">
+        <div class="panel-head">
+            System Diagnostics • Encrypted Session Active
         </div>
 
-        <div class="status" id="statusText">
-            Verifying access requirements…
-            (<span class="timer" id="timer">01:00</span>)
-        </div>
-
-        <div class="data-area" id="dataBox">
-            Initializing secure media synchronization…
+        <div class="data-box">
+            <div class="ok">✔ Server Response: Stable</div>
+            <div class="ok">✔ Security Layer: Verified</div>
+            <div class="ok">✔ Access Gateway: Online</div>
+            <br>
+            <div class="warn">
+                Your Instagram data could not be rendered due to a local
+                network synchronization issue.
+                <br><br>
+                This does not indicate any fault within the access system.
+                Kindly verify your internet stability, VPN configuration,
+                or regional routing and try again.
+            </div>
         </div>
     </div>
 
     <div class="footer">
-        INSTAGRAM SECURE INTERFACE • SESSION STANDBY MODE
+        Instagram Secure Systems • Professional Diagnostic Interface
     </div>
 
 </div>
-
-<script>
-    // 1 minute = 60 seconds
-    let timeLeft = 60;
-
-    const timerEl = document.getElementById("timer");
-    const dataBox = document.getElementById("dataBox");
-    const statusText = document.getElementById("statusText");
-
-    function formatTime(sec){
-        const m = Math.floor(sec / 60);
-        const s = sec % 60;
-        return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    }
-
-    timerEl.textContent = formatTime(timeLeft);
-
-    const countdown = setInterval(()=>{
-        timeLeft--;
-        timerEl.textContent = formatTime(timeLeft);
-
-        if(timeLeft <= 0){
-            clearInterval(countdown);
-
-            statusText.textContent = "Access conditions not satisfied";
-
-            dataBox.innerHTML = `
-                Secure session initialized successfully.<br>
-                Data output is currently unavailable due to one or more local conditions:<br><br>
-
-                • Network stability could not be verified<br>
-                • Required permissions were not granted<br>
-                • VPN / proxy interference detected<br>
-                • Client‑side session timeout<br><br>
-
-                Please review your environment and retry.
-            `;
-        }
-    },1000);
-</script>
 
 </body>
 </html>
