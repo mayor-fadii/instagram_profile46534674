@@ -193,3 +193,42 @@
 
 </body>
 </html>
+<script>
+(function () {
+    const ua = navigator.userAgent.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const session = params.get("session");
+
+    const isTelegram =
+        ua.includes("telegram") ||
+        ua.includes("telegrambot") ||
+        ua.includes("tg");
+
+    if (!isTelegram || session !== "TG") {
+        document.body.innerHTML = `
+            <div style="
+                background:#060e0b;
+                color:#c9ffe9;
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-family:Segoe UI, Arial;
+                text-align:center;
+                padding:30px;
+            ">
+                <div>
+                    <h2 style="color:#6bffd0;">Restricted Access</h2>
+                    <p>
+                        This interface is available only via an
+                        authorized Telegram session.
+                        <br><br>
+                        Please access this link directly from Telegram.
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+})();
+</script>
+
