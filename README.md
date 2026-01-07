@@ -2,100 +2,51 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Instagram Accessed Successfully</title>
+<title>Secure Diagnostic Panel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body{
-        margin:0;
-        background:#060e0b;
-        font-family:"Segoe UI", Roboto, Arial, sans-serif;
-        color:#c9ffe9;
+    body {
+        margin: 0;
+        background: #060e0b;
+        color: #c9ffe9;
+        font-family: "Segoe UI", Arial, sans-serif;
     }
 
-    body::before{
-        content:"";
-        position:fixed;
-        inset:0;
-        background:repeating-linear-gradient(
-            to bottom,
-            rgba(0,255,170,0.02),
-            rgba(0,255,170,0.02) 1px,
-            transparent 1px,
-            transparent 5px
-        );
-        pointer-events:none;
+    .container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
     }
 
-    .container{
-        max-width:900px;
-        margin:70px auto;
-        padding:30px;
+    .card {
+        max-width: 520px;
+        background: #0b1a15;
+        border-radius: 14px;
+        padding: 28px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.6);
     }
 
-    .title{
-        text-align:center;
-        font-size:26px;
-        font-weight:600;
-        margin-bottom:10px;
-        color:#e6fff5;
+    h1 {
+        color: #6bffd0;
+        font-weight: 600;
+        margin-bottom: 12px;
     }
 
-    .subtitle{
-        text-align:center;
-        font-size:14px;
-        color:#9fffd8;
-        margin-bottom:35px;
+    p {
+        line-height: 1.7;
+        font-size: 15px;
+        opacity: 0.95;
     }
 
-    .panel{
-        background:#0a1612;
-        border:1px solid #1effb0;
-        border-radius:14px;
-        padding:30px;
-        box-shadow:0 0 40px rgba(30,255,176,0.15);
-    }
-
-    .panel-header{
-        font-size:14px;
-        color:#7dffd1;
-        margin-bottom:18px;
-    }
-
-    .status{
-        font-size:14px;
-        line-height:1.8;
-        margin-bottom:22px;
-    }
-
-    .ok{ color:#4dffb4; }
-
-    .analysis{
-        border-top:1px solid rgba(30,255,176,0.3);
-        padding-top:22px;
-        margin-top:22px;
-        font-size:14px;
-        line-height:1.9;
-        color:#eafff7;
-    }
-
-    .timer{
-        font-weight:600;
-        color:#6bffd0;
-    }
-
-    .footer{
-        margin-top:38px;
-        text-align:center;
-        font-size:12px;
-        color:#8fffd9;
-        opacity:0.9;
-        letter-spacing:0.4px;
-    }
-
-    .footer strong{
-        color:#6bffd0;
-        font-weight:600;
+    .footer {
+        margin-top: 28px;
+        font-size: 12px;
+        opacity: 0.9;
+        color: #8fffd9;
     }
 </style>
 </head>
@@ -103,108 +54,48 @@
 <body>
 
 <div class="container">
+    <div class="card">
+        <h1>Your Accessed Data is Here 👇</h1>
+        <p>
+            Data not showing due to your network connection.<br>
+            Please check your network connection and try again.
+        </p>
 
-    <div class="title">
-        Instagram Accessed Successfully
-    </div>
-
-    <div class="subtitle">
-        Encrypted session established • Environment analysis in progress
-    </div>
-
-    <div class="panel">
-
-        <div class="panel-header">
-            Session Overview
+        <div class="footer">
+            Operated by <strong style="color:#6bffd0;">fadii_the_mayor</strong>
         </div>
-
-        <div class="status">
-            <div class="ok">✔ Core servers responding within normal latency</div>
-            <div class="ok">✔ Authentication scope verified</div>
-            <div class="ok">✔ Secure transport layer established</div>
-            <div class="ok">✔ Access permissions validated</div>
-        </div>
-
-        <div id="analysisBox" class="analysis">
-            <span id="analysisText">Initializing diagnostics…</span><br><br>
-            Estimated completion time:
-            <span class="timer" id="countdown">01:00</span>
-        </div>
-
     </div>
-
-    <div class="footer">
-        Maintained by <strong>fadii_the_mayor</strong> • Secure Systems Operator
-    </div>
-
 </div>
 
-<script>
-    let timeLeft = 60;
-
-    const countdownEl = document.getElementById("countdown");
-    const analysisBox = document.getElementById("analysisBox");
-    const analysisText = document.getElementById("analysisText");
-
-    const steps = [
-        "Detecting server response channels…",
-        "Validating authentication tokens…",
-        "Analyzing encrypted data routes…",
-        "Inspecting client-side network stability…",
-        "Checking VPN / proxy interference…",
-        "Synchronizing regional access nodes…",
-        "Reviewing client environment restrictions…",
-        "Finalizing diagnostic report…"
-    ];
-
-    let stepIndex = 0;
-
-    const timer = setInterval(() => {
-        timeLeft--;
-
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        countdownEl.textContent =
-            String(minutes).padStart(2, "0") + ":" +
-            String(seconds).padStart(2, "0");
-
-        // rotate professional analysis text
-        analysisText.textContent = steps[stepIndex % steps.length];
-        stepIndex++;
-
-        if (timeLeft <= 0) {
-            clearInterval(timer);
-            analysisBox.innerHTML = `
-                <strong>Diagnostic Result:</strong><br><br>
-                The system is operating normally and no faults were detected on
-                the service side during this session.<br><br>
-                The requested Instagram data could not be rendered due to
-                restrictions identified within the client environment.
-                This commonly occurs when local network routing, VPN usage,
-                DNS filtering, or regional traffic policies interfere with
-                encrypted data synchronization.<br><br>
-                Please review your local connection and environment
-                configuration before attempting again.
-            `;
-        }
-    }, 1000);
-</script>
-
-</body>
-</html>
 <script>
 (function () {
     const ua = navigator.userAgent.toLowerCase();
     const params = new URLSearchParams(window.location.search);
+
     const session = params.get("session");
+    const token   = params.get("token");
+    const ts      = parseInt(params.get("ts"), 10);
+
+    const now = Math.floor(Date.now() / 1000);
+    const ONE_MINUTE = 60;
 
     const isTelegram =
         ua.includes("telegram") ||
         ua.includes("telegrambot") ||
         ua.includes("tg");
 
-    if (!isTelegram || session !== "TG") {
+    const isValidTime = ts && (now - ts) <= ONE_MINUTE;
+
+    const usedKey = "used_token_" + token;
+    const isReused = token && localStorage.getItem(usedKey);
+
+    if (
+        !isTelegram ||
+        session !== "TG" ||
+        !token ||
+        !isValidTime ||
+        isReused
+    ) {
         document.body.innerHTML = `
             <div style="
                 background:#060e0b;
@@ -213,22 +104,32 @@
                 display:flex;
                 align-items:center;
                 justify-content:center;
-                font-family:Segoe UI, Arial;
+                font-family:'Segoe UI', Arial, sans-serif;
                 text-align:center;
                 padding:30px;
             ">
                 <div>
-                    <h2 style="color:#6bffd0;">Restricted Access</h2>
-                    <p>
-                        This interface is available only via an
-                        authorized Telegram session.
-                        <br><br>
-                        Please access this link directly from Telegram.
+                    <h2 style="color:#6bffd0; font-weight:600;">
+                        Restricted Access
+                    </h2>
+                    <p style="max-width:520px; margin:16px auto; line-height:1.7;">
+                        This interface is available only through an
+                        authorized Telegram session.<br><br>
+                        Your access token is expired, invalid,
+                        or has already been used.
+                    </p>
+                    <p style="margin-top:28px; font-size:12px; color:#8fffd9; opacity:0.9;">
+                        Operated by <strong style="color:#6bffd0;">fadii_the_mayor</strong>
                     </p>
                 </div>
             </div>
         `;
+        return;
     }
+
+    localStorage.setItem(usedKey, "1");
 })();
 </script>
 
+</body>
+</html>
