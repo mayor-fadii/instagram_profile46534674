@@ -1,191 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram Secure Access</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>IG Access Console</title>
 
 <style>
-    :root {
-        --bg: #0b0f1a;
-        --card: #12172a;
-        --accent: #4f7cff;
-        --text: #e6e8f0;
-        --muted: #9aa1b2;
-        --success: #3ddc97;
-    }
+:root{
+  --bg:#070a12;
+  --panel:#0e1424;
+  --panel-2:#0b1020;
+  --line:rgba(255,255,255,.06);
+  --text:#e7ebff;
+  --muted:#9aa3c7;
+  --accent:#5c7cff;
+  --ok:#2ee59d;
+  --warn:#ffcc66;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
 
-    * {
-        box-sizing: border-box;
-        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(900px 500px at 10% -10%, #0f1a44 0%, transparent 60%),
+    radial-gradient(800px 500px at 110% 10%, #0b1b3a 0%, transparent 55%),
+    var(--bg);
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  display:flex; align-items:center; justify-content:center;
+}
 
-    body {
-        margin: 0;
-        background: radial-gradient(1200px 600px at 20% 10%, #10163a, var(--bg));
-        color: var(--text);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
+.wrap{width:100%; max-width:980px; padding:18px}
 
-    .container {
-        width: 100%;
-        max-width: 420px;
-    }
+.shell{
+  background:linear-gradient(180deg, #0f1633, var(--panel));
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 40px 120px rgba(0,0,0,.65);
+  overflow:hidden;
+}
 
-    .card {
-        background: linear-gradient(180deg, #141a35, var(--card));
-        border-radius: 18px;
-        padding: 28px;
-        box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-        border: 1px solid rgba(255,255,255,0.04);
-    }
+/* header */
+.top{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px;
+  background:linear-gradient(180deg, #101842, var(--panel-2));
+  border-bottom:1px solid var(--line);
+}
+.brand{
+  display:flex; align-items:center; gap:10px; font-weight:600;
+}
+.dot{width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 10px var(--ok)}
+.env{
+  font-family:var(--mono); font-size:12px; color:#cfe0ff;
+  background:rgba(92,124,255,.12);
+  border:1px solid rgba(92,124,255,.25);
+  padding:6px 10px; border-radius:10px;
+}
 
-    .brand {
-        text-align: center;
-        margin-bottom: 24px;
-    }
+/* grid */
+.grid{
+  display:grid;
+  grid-template-columns: 300px 1fr;
+  gap:0;
+}
+.side{
+  border-right:1px solid var(--line);
+  background:linear-gradient(180deg, #0c1227, #0b1020);
+}
+.main{padding:18px}
 
-    .brand h1 {
-        font-size: 20px;
-        font-weight: 600;
-        margin: 0;
-        letter-spacing: 0.3px;
-    }
+/* sidebar */
+.block{padding:16px 18px; border-bottom:1px solid var(--line)}
+.kv{display:flex; justify-content:space-between; font-size:13px; color:var(--muted)}
+.kv b{color:var(--text); font-weight:500}
+.tag{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:var(--mono); font-size:12px;
+  padding:6px 10px; border-radius:10px;
+  background:rgba(46,229,157,.12);
+  border:1px solid rgba(46,229,157,.28);
+  color:#caffea;
+}
 
-    .brand p {
-        margin: 6px 0 0;
-        font-size: 13px;
-        color: var(--muted);
-    }
+/* terminal */
+.term{
+  background:#060913;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.6;
+}
+.line{color:#cfe0ff}
+.dim{color:#7f88b8}
+.ok{color:#7dffd0}
+.warn{color:#ffd27d}
 
-    .status {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: rgba(79,124,255,0.08);
-        border: 1px solid rgba(79,124,255,0.25);
-        padding: 12px 14px;
-        border-radius: 12px;
-        margin-bottom: 18px;
-    }
+/* cards */
+.cards{
+  display:grid; grid-template-columns: repeat(3, 1fr);
+  gap:14px; margin-top:14px;
+}
+.card{
+  background:linear-gradient(180deg, #0e1530, #0c132b);
+  border:1px solid var(--line);
+  border-radius:12px; padding:14px;
+}
+.card h4{margin:0 0 8px; font-size:13px; color:#cfe0ff; font-weight:500}
+.card p{margin:0; font-size:12px; color:var(--muted)}
 
-    .dot {
-        width: 10px;
-        height: 10px;
-        background: var(--accent);
-        border-radius: 50%;
-        box-shadow: 0 0 10px var(--accent);
-    }
+/* footer */
+.foot{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 18px; border-top:1px solid var(--line);
+  font-size:12px; color:var(--muted)
+}
+.lock{display:flex; align-items:center; gap:6px; color:#b7ffea}
 
-    .status span {
-        font-size: 13px;
-        color: #cfd6ff;
-    }
-
-    .info {
-        font-size: 14px;
-        line-height: 1.6;
-        color: var(--muted);
-        margin-bottom: 22px;
-    }
-
-    .info strong {
-        color: var(--text);
-        font-weight: 500;
-    }
-
-    .progress {
-        height: 6px;
-        background: rgba(255,255,255,0.08);
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 14px;
-    }
-
-    .bar {
-        height: 100%;
-        width: 72%;
-        background: linear-gradient(90deg, var(--accent), #7aa2ff);
-        border-radius: 10px;
-    }
-
-    .footer {
-        display: flex;
-        justify-content: space-between;
-        font-size: 12px;
-        color: var(--muted);
-        margin-top: 18px;
-    }
-
-    .secure {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--success);
-        font-weight: 500;
-    }
-
-    .divider {
-        height: 1px;
-        background: rgba(255,255,255,0.06);
-        margin: 18px 0;
-    }
-
-    .note {
-        font-size: 12px;
-        color: var(--muted);
-        text-align: center;
-    }
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .side{border-right:none; border-bottom:1px solid var(--line)}
+}
 </style>
 </head>
 
 <body>
+<div class="wrap">
+  <div class="shell">
 
-<div class="container">
-    <div class="card">
-
-        <div class="brand">
-            <h1>Instagram Secure Access</h1>
-            <p>Protected session • Simulation environment</p>
-        </div>
-
-        <div class="status">
-            <div class="dot"></div>
-            <span>Connection established successfully</span>
-        </div>
-
-        <div class="info">
-            A secure request has been initiated for this Instagram account.
-            <br><br>
-            <strong>Data visibility:</strong> Limited  
-            <br>
-            <strong>Session type:</strong> Read-only simulation  
-            <br>
-            <strong>Risk level:</strong> Minimal
-        </div>
-
-        <div class="progress">
-            <div class="bar"></div>
-        </div>
-
-        <div class="footer">
-            <div class="secure">🔒 Encrypted</div>
-            <div>v1.0</div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="note">
-            No credentials are collected or stored.  
-            This interface is designed for demonstration purposes only.
-        </div>
-
+    <div class="top">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>IG Access Console</span>
+      </div>
+      <div class="env">NODE · EU-WEST · SECURE</div>
     </div>
-</div>
 
-</body>
-</html>
+    <div class="grid">
+      <!-- sidebar -->
+      <div class="side">
+        <div class="block">
+          <div class="kv"><span>Status</span><b>Connected</b></div>
+          <div class="kv"><span>Scope</span><b>Read-Only</b></div>
+          <div class="kv"><span>Channel</span><b>Encrypted</b></div>
+        </div>
+        <div class="block">
+          <span class="tag">SESSION ACTIVE</span>
+        </div>
+        <div class="block">
+          <div class="kv"><span>Latency</span><b>18 ms</b></div>
+          <div class="kv"><span>Integrity</span><b>OK</b></div>
+          <div class="kv"><span>Risk</span><b>Low</b></div>
+        </div>
+      </div>
+
+      <!-- main -->
+      <div class="main">
+        <div class="term">
