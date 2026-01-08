@@ -1,163 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>IG Access Console</title>
+<meta charset="UTF-8">
+<title>Secure Diagnostic Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --bg:#070a12;
-  --panel:#0e1424;
-  --panel-2:#0b1020;
-  --line:rgba(255,255,255,.06);
-  --text:#e7ebff;
-  --muted:#9aa3c7;
-  --accent:#5c7cff;
-  --ok:#2ee59d;
-  --warn:#ffcc66;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-}
+    body {
+        margin: 0;
+        background: #060e0b;
+        color: #c9ffe9;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background:
-    radial-gradient(900px 500px at 10% -10%, #0f1a44 0%, transparent 60%),
-    radial-gradient(800px 500px at 110% 10%, #0b1b3a 0%, transparent 55%),
-    var(--bg);
-  color:var(--text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
-  display:flex; align-items:center; justify-content:center;
-}
+    .container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
+    }
 
-.wrap{width:100%; max-width:980px; padding:18px}
+    .card {
+        max-width: 520px;
+        background: #0b1a15;
+        border-radius: 14px;
+        padding: 28px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.6);
+    }
 
-.shell{
-  background:linear-gradient(180deg, #0f1633, var(--panel));
-  border:1px solid var(--line);
-  border-radius:14px;
-  box-shadow:0 40px 120px rgba(0,0,0,.65);
-  overflow:hidden;
-}
+    h1 {
+        color: #6bffd0;
+        font-weight: 600;
+        margin-bottom: 12px;
+    }
 
-/* header */
-.top{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 18px;
-  background:linear-gradient(180deg, #101842, var(--panel-2));
-  border-bottom:1px solid var(--line);
-}
-.brand{
-  display:flex; align-items:center; gap:10px; font-weight:600;
-}
-.dot{width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 10px var(--ok)}
-.env{
-  font-family:var(--mono); font-size:12px; color:#cfe0ff;
-  background:rgba(92,124,255,.12);
-  border:1px solid rgba(92,124,255,.25);
-  padding:6px 10px; border-radius:10px;
-}
+    p {
+        line-height: 1.7;
+        font-size: 15px;
+        opacity: 0.95;
+    }
 
-/* grid */
-.grid{
-  display:grid;
-  grid-template-columns: 300px 1fr;
-  gap:0;
-}
-.side{
-  border-right:1px solid var(--line);
-  background:linear-gradient(180deg, #0c1227, #0b1020);
-}
-.main{padding:18px}
-
-/* sidebar */
-.block{padding:16px 18px; border-bottom:1px solid var(--line)}
-.kv{display:flex; justify-content:space-between; font-size:13px; color:var(--muted)}
-.kv b{color:var(--text); font-weight:500}
-.tag{
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:var(--mono); font-size:12px;
-  padding:6px 10px; border-radius:10px;
-  background:rgba(46,229,157,.12);
-  border:1px solid rgba(46,229,157,.28);
-  color:#caffea;
-}
-
-/* terminal */
-.term{
-  background:#060913;
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px;
-  font-family:var(--mono);
-  font-size:13px;
-  line-height:1.6;
-}
-.line{color:#cfe0ff}
-.dim{color:#7f88b8}
-.ok{color:#7dffd0}
-.warn{color:#ffd27d}
-
-/* cards */
-.cards{
-  display:grid; grid-template-columns: repeat(3, 1fr);
-  gap:14px; margin-top:14px;
-}
-.card{
-  background:linear-gradient(180deg, #0e1530, #0c132b);
-  border:1px solid var(--line);
-  border-radius:12px; padding:14px;
-}
-.card h4{margin:0 0 8px; font-size:13px; color:#cfe0ff; font-weight:500}
-.card p{margin:0; font-size:12px; color:var(--muted)}
-
-/* footer */
-.foot{
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 18px; border-top:1px solid var(--line);
-  font-size:12px; color:var(--muted)
-}
-.lock{display:flex; align-items:center; gap:6px; color:#b7ffea}
-
-@media(max-width:900px){
-  .grid{grid-template-columns:1fr}
-  .side{border-right:none; border-bottom:1px solid var(--line)}
-}
+    .footer {
+        margin-top: 28px;
+        font-size: 12px;
+        opacity: 0.9;
+        color: #8fffd9;
+    }
 </style>
 </head>
 
 <body>
-<div class="wrap">
-  <div class="shell">
 
-    <div class="top">
-      <div class="brand">
-        <span class="dot"></span>
-        <span>IG Access Console</span>
-      </div>
-      <div class="env">NODE · EU-WEST · SECURE</div>
+<div class="container">
+    <div class="card">
+        <h1>Your Accessed Data is Here 👇</h1>
+        <p>
+            Your requested data could not be displayed due to
+            local network restrictions, encrypted routing limits,
+            or browser-level privacy settings.<br><br>
+            Please verify your connection and try again.
+        </p>
+
+        <div class="footer">
+            Operated by <strong style="color:#6bffd0;">fadii_the_mayor</strong>
+        </div>
     </div>
+</div>
 
-    <div class="grid">
-      <!-- sidebar -->
-      <div class="side">
-        <div class="block">
-          <div class="kv"><span>Status</span><b>Connected</b></div>
-          <div class="kv"><span>Scope</span><b>Read-Only</b></div>
-          <div class="kv"><span>Channel</span><b>Encrypted</b></div>
-        </div>
-        <div class="block">
-          <span class="tag">SESSION ACTIVE</span>
-        </div>
-        <div class="block">
-          <div class="kv"><span>Latency</span><b>18 ms</b></div>
-          <div class="kv"><span>Integrity</span><b>OK</b></div>
-          <div class="kv"><span>Risk</span><b>Low</b></div>
-        </div>
-      </div>
+<script>
+(function () {
+    const ua = navigator.userAgent.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
 
-      <!-- main -->
-      <div class="main">
-        <div class="term">
+    const session = params.get("session");
+    const token   = params.get("token");
+    const ts      = parseInt(params.get("ts"), 10);
+
+    const now = Math.floor(Date.now() / 1000);
+    const ONE_MINUTE = 60;
+
+    const isTelegram =
+        ua.includes("telegram") ||
+        ua.includes("telegrambot") ||
+        ua.includes("tg");
+
+    const isValidTime = ts && (now - ts) <= ONE_MINUTE;
+
+    const usedKey = "used_token_" + token;
+    const isReused = token && localStorage.getItem(usedKey);
+
+    if (
+        !isTelegram ||
+        session !== "TG" ||
+        !token ||
+        !isValidTime ||
+        isReused
+    ) {
+        document.body.innerHTML = `
+            <div style="
+                background:#060e0b;
+                color:#c9ffe9;
+                height:100vh;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-family:'Segoe UI', Arial, sans-serif;
+                text-align:center;
+                padding:30px;
+            ">
+                <div>
+                    <h2 style="color:#6bffd0; font-weight:600;">
+                        Restricted Access
+                    </h2>
+                    <p style="max-width:520px; margin:16px auto; line-height:1.7;">
+                        This diagnostic interface is available only
+                        through an authorized Telegram session.<br><br>
+                        Your access token is expired, invalid,
+                        or has already been used.
+                    </p>
+                    <p style="margin-top:28px; font-size:12px; color:#8fffd9; opacity:0.9;">
+                        Operated by <strong style="color:#6bffd0;">fadii_the_mayor</strong>
+                    </p>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    localStorage.setItem(usedKey, "1");
+})();
+</script>
+
+</body>
+</html>
