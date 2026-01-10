@@ -33,7 +33,7 @@
     h1{
         color:#6bffd0;
         font-weight:600;
-        margin-bottom:10px;
+        margin-bottom:8px;
     }
 
     .sub{
@@ -41,16 +41,6 @@
         opacity:.9;
         margin-bottom:22px;
         line-height:1.6;
-    }
-
-    .conditions{
-        background:#071310;
-        border-radius:12px;
-        padding:16px;
-        font-size:13px;
-        line-height:1.7;
-        margin-bottom:26px;
-        border:1px solid rgba(107,255,208,.15);
     }
 
     label{
@@ -76,13 +66,40 @@
         opacity:.7;
     }
 
-    /* ===== ACCESS AREA ===== */
-    .access-area{
-        display:none;
-        margin-top:28px;
+    button{
+        width:100%;
+        margin-top:16px;
+        padding:13px;
+        border-radius:12px;
+        border:none;
+        background:#6bffd0;
+        color:#062017;
+        font-weight:600;
+        font-size:14px;
+        cursor:pointer;
+        transition:.2s;
     }
 
-    .access-title{
+    button:hover{
+        opacity:.9;
+    }
+
+    .processing{
+        display:none;
+        margin-top:22px;
+        font-size:14px;
+        opacity:.9;
+        text-align:center;
+    }
+
+    /* ===== RESULT AREA ===== */
+    .result{
+        display:none;
+        margin-top:28px;
+        text-align:center;
+    }
+
+    .result-title{
         font-size:18px;
         color:#6bffd0;
         font-weight:600;
@@ -99,7 +116,7 @@
         align-items:center;
         justify-content:center;
         gap:20px;
-        margin-bottom:22px;
+        margin-bottom:20px;
     }
 
     .arrow{
@@ -129,11 +146,10 @@
         user-select:none;
     }
 
-    .note{
+    .success{
         font-size:14px;
-        line-height:1.7;
+        margin-top:10px;
         opacity:.95;
-        text-align:center;
     }
 
     .footer{
@@ -153,22 +169,21 @@
 
     <h1>Instagram Access Tool</h1>
     <div class="sub">
-        Secure diagnostic interface for controlled Instagram account inspection.
-    </div>
-
-    <div class="conditions">
-        • Access depends on endpoint availability and routing<br>
-        • Delays may occur during encrypted data negotiation<br>
-        • Ensure correct username before submission
+        Secure interface for controlled Instagram account inspection.
     </div>
 
     <label>Enter Instagram Username</label>
     <input type="text" id="username" placeholder="@username" autocomplete="off">
 
-    <!-- Hidden until username entered -->
-    <div class="access-area" id="accessArea">
+    <button onclick="startSearch()">Search</button>
 
-        <div class="access-title">
+    <div class="processing" id="processing">
+        Processing request… please wait
+    </div>
+
+    <div class="result" id="result">
+
+        <div class="result-title">
             Your Accessed Data is here
             <span class="blur-emoji">🔓</span>
         </div>
@@ -179,10 +194,8 @@
             <div class="arrow" onclick="nextEmoji()">›</div>
         </div>
 
-        <div class="note">
-            Requested data could not be rendered due to
-            client-side network configuration or permission limits.<br>
-            Please verify your connection and retry.
+        <div class="success">
+            Accessed successfully.
         </div>
 
     </div>
@@ -195,31 +208,30 @@
 </div>
 
 <script>
-/* Show access area only after username input */
-const userInput = document.getElementById("username");
-const accessArea = document.getElementById("accessArea");
-
-userInput.addEventListener("input", () => {
-    if(userInput.value.trim().length > 0){
-        accessArea.style.display = "block";
-    } else {
-        accessArea.style.display = "none";
-    }
-});
-
-/* Emoji manual slider */
 const emojis = ["📡","🔍","🧠","🧩","🛰️","⚙️","🔐","🗂️"];
 let index = 0;
-const box = document.getElementById("emojiBox");
+
+function startSearch(){
+    const user = document.getElementById("username").value.trim();
+    if(!user) return;
+
+    document.getElementById("result").style.display = "none";
+    document.getElementById("processing").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("processing").style.display = "none";
+        document.getElementById("result").style.display = "block";
+    }, 5000);
+}
 
 function nextEmoji(){
     index = (index + 1) % emojis.length;
-    box.textContent = emojis[index];
+    document.getElementById("emojiBox").textContent = emojis[index];
 }
 
 function prevEmoji(){
     index = (index - 1 + emojis.length) % emojis.length;
-    box.textContent = emojis[index];
+    document.getElementById("emojiBox").textContent = emojis[index];
 }
 </script>
 
