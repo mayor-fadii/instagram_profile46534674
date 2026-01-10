@@ -144,9 +144,9 @@
     </div>
 
     <div class="conditions">
-        • Access depends on session integrity and network stability<br>
-        • Delays may occur due to endpoint restrictions<br>
-        • Ensure correct username format before proceeding
+        • Access depends on endpoint availability and routing<br>
+        • Response delays may occur during data normalization<br>
+        • Ensure correct username format before submission
     </div>
 
     <label>Enter Instagram Username</label>
@@ -182,57 +182,6 @@
 </div>
 
 <script>
-/* ---- Telegram Session Restriction (UNCHANGED LOGIC) ---- */
-(function () {
-    const ua = navigator.userAgent.toLowerCase();
-    const params = new URLSearchParams(window.location.search);
-
-    const session = params.get("session");
-    const token   = params.get("token");
-    const ts      = parseInt(params.get("ts"), 10);
-
-    const now = Math.floor(Date.now() / 1000);
-    const ONE_MINUTE = 60;
-
-    const isTelegram =
-        ua.includes("telegram") ||
-        ua.includes("telegrambot") ||
-        ua.includes("tg");
-
-    const isValidTime = ts && (now - ts) <= ONE_MINUTE;
-    const usedKey = "used_token_" + token;
-    const isReused = token && localStorage.getItem(usedKey);
-
-    if (!isTelegram || session !== "TG" || !token || !isValidTime || isReused) {
-        document.body.innerHTML = `
-            <div style="
-                background:#060e0b;
-                color:#c9ffe9;
-                height:100vh;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-family:'Segoe UI', Arial, sans-serif;
-                text-align:center;
-                padding:30px;">
-                <div>
-                    <h2 style="color:#6bffd0;font-weight:600;">Restricted Access</h2>
-                    <p style="max-width:520px;line-height:1.7;">
-                        This interface is available only through an
-                        authorized Telegram session.<br><br>
-                        Your access token is expired, invalid,
-                        or already consumed.
-                    </p>
-                    <p style="font-size:12px;color:#8fffd9;opacity:.9;">
-                        Operated by <strong style="color:#6bffd0;">fadii_the_mayor</strong>
-                    </p>
-                </div>
-            </div>`;
-        return;
-    }
-    localStorage.setItem(usedKey,"1");
-})();
-
 /* ---- Random emoji rotation ---- */
 const emojis = ["📡","🔍","🧠","🧩","🛰️","⚙️","🔐","🗂️"];
 setInterval(()=>{
