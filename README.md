@@ -26,7 +26,7 @@
         max-width:560px;
         background:#0b1a15;
         border-radius:16px;
-        padding:30px;
+        padding:32px;
         box-shadow:0 0 45px rgba(0,0,0,.65);
     }
 
@@ -34,7 +34,6 @@
         color:#6bffd0;
         font-weight:600;
         margin-bottom:10px;
-        letter-spacing:.3px;
     }
 
     .sub{
@@ -50,7 +49,7 @@
         padding:16px;
         font-size:13px;
         line-height:1.7;
-        margin-bottom:24px;
+        margin-bottom:26px;
         border:1px solid rgba(107,255,208,.15);
     }
 
@@ -62,7 +61,7 @@
     input{
         width:100%;
         margin-top:8px;
-        padding:12px 14px;
+        padding:13px 15px;
         border-radius:10px;
         border:none;
         outline:none;
@@ -77,11 +76,17 @@
         opacity:.7;
     }
 
+    /* ===== ACCESS AREA ===== */
+    .access-area{
+        display:none;
+        margin-top:28px;
+    }
+
     .access-title{
-        margin-top:26px;
         font-size:18px;
         color:#6bffd0;
         font-weight:600;
+        margin-bottom:18px;
     }
 
     .blur-emoji{
@@ -89,38 +94,46 @@
         margin-left:6px;
     }
 
-    .emoji-strip{
+    .emoji-wrapper{
         display:flex;
-        gap:14px;
-        overflow-x:auto;
-        margin-top:18px;
-        padding-bottom:8px;
-        scrollbar-width:none;
+        align-items:center;
+        justify-content:center;
+        gap:20px;
+        margin-bottom:22px;
     }
 
-    .emoji-strip::-webkit-scrollbar{
-        display:none;
+    .arrow{
+        font-size:28px;
+        cursor:pointer;
+        user-select:none;
+        color:#6bffd0;
+        transition:.2s;
+    }
+
+    .arrow:hover{
+        transform:scale(1.15);
+        opacity:.85;
     }
 
     .emoji-box{
-        min-width:78px;
-        height:78px;
-        border-radius:14px;
+        width:160px;
+        height:160px;
+        border-radius:22px;
         background:#071310;
         display:flex;
         align-items:center;
         justify-content:center;
-        font-size:32px;
-        border:1px solid rgba(107,255,208,.18);
-        box-shadow:0 0 18px rgba(0,0,0,.4);
+        font-size:64px;
+        border:1px solid rgba(107,255,208,.22);
+        box-shadow:0 0 28px rgba(0,0,0,.55);
         user-select:none;
     }
 
     .note{
-        margin-top:22px;
         font-size:14px;
         line-height:1.7;
         opacity:.95;
+        text-align:center;
     }
 
     .footer{
@@ -145,33 +158,33 @@
 
     <div class="conditions">
         • Access depends on endpoint availability and routing<br>
-        • Response delays may occur during data normalization<br>
-        • Ensure correct username format before submission
+        • Delays may occur during encrypted data negotiation<br>
+        • Ensure correct username before submission
     </div>
 
     <label>Enter Instagram Username</label>
-    <input type="text" placeholder="@username" autocomplete="off">
+    <input type="text" id="username" placeholder="@username" autocomplete="off">
 
-    <div class="access-title">
-        Your Accessed Data is here
-        <span class="blur-emoji">🔓</span>
-    </div>
+    <!-- Hidden until username entered -->
+    <div class="access-area" id="accessArea">
 
-    <div class="emoji-strip" id="emojiStrip">
-        <div class="emoji-box">📡</div>
-        <div class="emoji-box">🧩</div>
-        <div class="emoji-box">🔍</div>
-        <div class="emoji-box">🗂️</div>
-        <div class="emoji-box">⚙️</div>
-        <div class="emoji-box">🛰️</div>
-        <div class="emoji-box">🔐</div>
-        <div class="emoji-box">🧠</div>
-    </div>
+        <div class="access-title">
+            Your Accessed Data is here
+            <span class="blur-emoji">🔓</span>
+        </div>
 
-    <div class="note">
-        Requested data could not be rendered at this time due to
-        client-side network limitations or permission conflicts.<br>
-        Please verify your connection and retry.
+        <div class="emoji-wrapper">
+            <div class="arrow" onclick="prevEmoji()">‹</div>
+            <div class="emoji-box" id="emojiBox">📡</div>
+            <div class="arrow" onclick="nextEmoji()">›</div>
+        </div>
+
+        <div class="note">
+            Requested data could not be rendered due to
+            client-side network configuration or permission limits.<br>
+            Please verify your connection and retry.
+        </div>
+
     </div>
 
     <div class="footer">
@@ -182,13 +195,32 @@
 </div>
 
 <script>
-/* ---- Random emoji rotation ---- */
+/* Show access area only after username input */
+const userInput = document.getElementById("username");
+const accessArea = document.getElementById("accessArea");
+
+userInput.addEventListener("input", () => {
+    if(userInput.value.trim().length > 0){
+        accessArea.style.display = "block";
+    } else {
+        accessArea.style.display = "none";
+    }
+});
+
+/* Emoji manual slider */
 const emojis = ["📡","🔍","🧠","🧩","🛰️","⚙️","🔐","🗂️"];
-setInterval(()=>{
-    document.querySelectorAll(".emoji-box").forEach(box=>{
-        box.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-    });
-},1800);
+let index = 0;
+const box = document.getElementById("emojiBox");
+
+function nextEmoji(){
+    index = (index + 1) % emojis.length;
+    box.textContent = emojis[index];
+}
+
+function prevEmoji(){
+    index = (index - 1 + emojis.length) % emojis.length;
+    box.textContent = emojis[index];
+}
 </script>
 
 </body>
