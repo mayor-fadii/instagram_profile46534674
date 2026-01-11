@@ -73,7 +73,7 @@ opacity:.85;
 <div class="result" id="res">
 <div class="row"><span>Username</span><span class="value">••••••••</span></div>
 <div class="row"><span>Email</span><span class="value">•••••••••••</span></div>
-<div class="row"><span>Password</span><span class="value">••••••••••••</span></div>
+<div class="row"><span>Password</span><span class="value">az_#malik3854629909@</span></div>
 <div class="sync" id="sync">Last sync: just now</div>
 </div>
 
