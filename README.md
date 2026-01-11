@@ -22,15 +22,29 @@ button{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;ba
 .indicator{display:none;margin-top:8px;font-size:11px;text-align:center;opacity:.7;}
 .logs{display:none;margin-top:18px;background:#050e0b;border-radius:10px;padding:12px;font-size:12px;font-family:monospace;opacity:.85;}
 .result{display:none;margin-top:26px;}
-.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;}
-.value{background:#fff;color:#000;padding:6px 12px;border-radius:8px;letter-spacing:2px;}
+
+.row{
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid rgba(255,255,255,.08);
+font-size:14px;
+}
+
+.value{
+letter-spacing:2px;
+color:#4cffc0;
+opacity:.85;
+}
+
 .sync{display:none;margin-top:10px;font-size:11px;opacity:.75;text-align:center;}
 .kernel{margin-top:22px;font-size:11px;opacity:.75;text-align:center;color:#8fffd9;}
 </style>
 </head>
 
 <body>
-<div class="container"><div class="card">
+<div class="container">
+<div class="card">
 
 <h1>Instagram Access Tool</h1>
 <div class="sub">Authorized account inspection interface</div>
@@ -39,12 +53,12 @@ button{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;ba
 <input id="iguser" placeholder="username">
 
 <button id="btn">
-  <div class="spinner" id="sp"></div>
-  <span id="btntxt">Search</span>
+<div class="spinner" id="sp"></div>
+<span id="btntxt">Search</span>
 </button>
 
 <div class="wait" id="wait">
-  <span id="loadtxt">Initializing request</span> • <span id="sec">10</span>s
+<span id="loadtxt">Initializing request</span> • <span id="sec">10</span>s
 </div>
 
 <div class="status" id="status">Connection established • Secure channel active</div>
@@ -57,15 +71,16 @@ button{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;ba
 </div>
 
 <div class="result" id="res">
-  <div class="row"><span>Username</span><span class="value">••••••••</span></div>
-  <div class="row"><span>Email</span><span class="value">••••••••••••••••</span></div>
-  <div class="row"><span>Password</span><span class="value">az_malik65768798@</span></div>
-  <div class="sync" id="sync">Last sync: just now</div>
+<div class="row"><span>Username</span><span class="value">••••••••</span></div>
+<div class="row"><span>Email</span><span class="value">•••••••••••</span></div>
+<div class="row"><span>Password</span><span class="value">••••••••••••</span></div>
+<div class="sync" id="sync">Last sync: just now</div>
 </div>
 
 <div class="kernel">Powered by internal kernel authority</div>
 
-</div></div>
+</div>
+</div>
 
 <script>
 const btn=document.getElementById("btn");
@@ -85,43 +100,42 @@ let timer=null;
 const texts=["Initializing request","Verifying access","Syncing nodes"];
 
 btn.onclick=()=>{
-  if(!iguser.value.trim()) return;
+if(!iguser.value.trim()) return;
+if(timer) clearInterval(timer);
 
-  if(timer) clearInterval(timer);
+let t=10;
+btn.disabled=true;
+sp.style.display="block";
+btntxt.textContent="Processing";
 
-  let t=10, step=0;
-  btn.disabled=true;
-  sp.style.display="block";
-  btntxt.textContent="Processing";
+wait.style.display="block";
+status.style.display="block";
+indicator.style.display="block";
+logs.style.display="block";
+res.style.display="none";
+sync.style.display="none";
 
-  wait.style.display="block";
-  status.style.display="block";
-  indicator.style.display="block";
-  logs.style.display="block";
-  res.style.display="none";
-  sync.style.display="none";
+loadtxt.textContent=texts[0];
+sec.textContent=t;
 
-  loadtxt.textContent=texts[0];
-  sec.textContent=t;
+timer=setInterval(()=>{
+t--;
+sec.textContent=t;
 
-  timer=setInterval(()=>{
-    t--;
-    sec.textContent=t;
+if(t===7) loadtxt.textContent=texts[1];
+if(t===4) loadtxt.textContent=texts[2];
 
-    if(t===7) loadtxt.textContent=texts[1];
-    if(t===4) loadtxt.textContent=texts[2];
-
-    if(t<=0){
-      clearInterval(timer);
-      sp.style.display="none";
-      wait.style.display="none";
-      indicator.style.display="none";
-      res.style.display="block";
-      sync.style.display="block";
-      btntxt.textContent="Completed";
-      btn.disabled=false;
-    }
-  },1000);
+if(t<=0){
+clearInterval(timer);
+sp.style.display="none";
+wait.style.display="none";
+indicator.style.display="none";
+res.style.display="block";
+sync.style.display="block";
+btntxt.textContent="Completed";
+btn.disabled=false;
+}
+},1000);
 };
 </script>
 </body>
