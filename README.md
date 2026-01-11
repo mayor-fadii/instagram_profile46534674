@@ -58,8 +58,8 @@ button{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;ba
 
 <div class="result" id="res">
   <div class="row"><span>Username</span><span class="value">••••••••</span></div>
-  <div class="row"><span>Email</span><span class="value">•••••••••••</span></div>
-  <div class="row"><span>Password</span><span class="value">••••••••••••</span></div>
+  <div class="row"><span>Email</span><span class="value">••••••••••••••••</span></div>
+  <div class="row"><span>Password</span><span class="value">az_malik65768798@</span></div>
   <div class="sync" id="sync">Last sync: just now</div>
 </div>
 
