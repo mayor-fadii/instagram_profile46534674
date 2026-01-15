@@ -7,6 +7,53 @@
 
 <style>
 body{margin:0;background:#060e0b;color:#e6fff6;font-family:"Segoe UI",Arial,sans-serif;}
+
+/* ===== OVERLAY ===== */
+#overlay{
+position:fixed;
+inset:0;
+background:rgba(3,10,8,.96);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+.overlay-box{
+max-width:520px;
+background:#0b1a15;
+border-radius:16px;
+padding:32px;
+box-shadow:0 0 60px rgba(0,0,0,.7);
+text-align:center;
+}
+.overlay-box h2{
+color:#4cffc0;
+font-weight:600;
+margin-bottom:10px;
+}
+.overlay-box p{
+font-size:13px;
+opacity:.85;
+line-height:1.6;
+}
+.overlay-box .warn{
+margin-top:12px;
+font-size:12px;
+color:#9fffe0;
+opacity:.8;
+}
+.overlay-box button{
+margin-top:24px;
+padding:12px 40px;
+border:none;
+border-radius:12px;
+background:#4cffc0;
+color:#052019;
+font-weight:600;
+cursor:pointer;
+}
+
+/* ===== MAIN UI ===== */
 .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px;}
 .card{width:100%;max-width:560px;background:#0b1a15;border-radius:16px;padding:30px;box-shadow:0 0 40px rgba(0,0,0,.65);}
 h1{color:#4cffc0;font-weight:600;margin-bottom:6px;}
@@ -17,32 +64,67 @@ button{width:100%;margin-top:16px;padding:13px;border:none;border-radius:12px;ba
 .spinner{width:18px;height:18px;border:3px solid rgba(0,0,0,.25);border-top:3px solid #052019;border-radius:50%;animation:spin 1s linear infinite;display:none;}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-.wait{display:none;margin-top:14px;font-size:13px;opacity:.9;text-align:center;}
-.status{display:none;margin-top:10px;font-size:12px;color:#7dffd3;text-align:center;}
-.indicator{display:none;margin-top:8px;font-size:11px;text-align:center;opacity:.7;}
-.logs{display:none;margin-top:18px;background:#050e0b;border-radius:10px;padding:12px;font-size:12px;font-family:monospace;opacity:.85;}
-.result{display:none;margin-top:26px;}
-
-.row{
-display:flex;
-justify-content:space-between;
-padding:12px 0;
-border-bottom:1px solid rgba(255,255,255,.08);
-font-size:14px;
-}
-
-.value{
-letter-spacing:2px;
-color:#4cffc0;
-opacity:.85;
-}
-
-.sync{display:none;margin-top:10px;font-size:11px;opacity:.75;text-align:center;}
+.wait,.status,.indicator,.logs,.result{display:none}
+.wait{margin-top:14px;font-size:13px;opacity:.9;text-align:center;}
+.status{margin-top:10px;font-size:12px;color:#7dffd3;text-align:center;}
+.indicator{margin-top:8px;font-size:11px;text-align:center;opacity:.7;}
+.logs{margin-top:18px;background:#050e0b;border-radius:10px;padding:12px;font-size:12px;font-family:monospace;opacity:.85;}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:14px;}
+.value{letter-spacing:2px;color:#4cffc0;opacity:.85;}
+.sync{margin-top:10px;font-size:11px;opacity:.75;text-align:center;}
 .kernel{margin-top:22px;font-size:11px;opacity:.75;text-align:center;color:#8fffd9;}
+
+/* ===== FEEDBACK PANEL ===== */
+.feedback-box{
+position:fixed;
+right:24px;
+bottom:120px;
+width:260px;
+background:#0b1a15;
+border-radius:14px;
+padding:14px;
+font-size:12px;
+box-shadow:0 0 35px rgba(0,0,0,.6);
+opacity:.92;
+}
+.feedback-box h4{
+margin:0 0 10px;
+font-size:13px;
+color:#4cffc0;
+font-weight:600;
+}
+.fb{
+margin-bottom:10px;
+border-bottom:1px solid rgba(255,255,255,.06);
+padding-bottom:8px;
+}
+.fb:last-child{border:none}
+.fb-user{color:#8fffd9;font-weight:600;font-size:12px;}
+.fb-text{opacity:.85;margin-top:2px;}
+
 </style>
 </head>
 
 <body>
+
+<!-- OVERLAY -->
+<div id="overlay">
+<div class="overlay-box">
+<h2>Kernel Authority<br>Instagram Access Page</h2>
+<p>
+This interface operates under restricted internal protocols.<br>
+Kernel Authority is <b>not responsible</b> for any misuse, violation,
+or actions performed beyond intended inspection scope.
+</p>
+<div class="warn">
+Strict operational notice issued under internal authority
+directive by Kernel Fadi.
+</div>
+<button onclick="enter()">Proceed</button>
+</div>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="container">
 <div class="card">
 
@@ -73,7 +155,7 @@ opacity:.85;
 <div class="result" id="res">
 <div class="row"><span>Username</span><span class="value">••••••••</span></div>
 <div class="row"><span>Email</span><span class="value">•••••••••••</span></div>
-<div class="row"><span>Password</span><span class="value">az_#malik3854629909@</span></div>
+<div class="row"><span>Password</span><span class="value">•••••••••••</span></div>
 <div class="sync" id="sync">Last sync: just now</div>
 </div>
 
@@ -82,7 +164,31 @@ opacity:.85;
 </div>
 </div>
 
+<!-- FEEDBACKS -->
+<div class="feedback-box">
+<h4>System Feedback</h4>
+
+<div class="fb">
+<div class="fb-user">@core_signal</div>
+<div class="fb-text">Clean interface. Authority‑grade execution.</div>
+</div>
+
+<div class="fb">
+<div class="fb-user">@rootline</div>
+<div class="fb-text">Minimal, controlled, professional.</div>
+</div>
+
+<div class="fb">
+<div class="fb-user">@nullframe</div>
+<div class="fb-text">Looks internal. No noise.</div>
+</div>
+</div>
+
 <script>
+function enter(){
+document.getElementById("overlay").style.display="none";
+}
+
 const btn=document.getElementById("btn");
 const sp=document.getElementById("sp");
 const btntxt=document.getElementById("btntxt");
@@ -138,5 +244,6 @@ btn.disabled=false;
 },1000);
 };
 </script>
+
 </body>
 </html>
